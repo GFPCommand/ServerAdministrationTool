@@ -3,6 +3,27 @@
 }
 
 <div class="text-center">
-    <img src="server.png" style="width: 20%; margin-top: 5%;"></img>
+    <img src="/src/server.png" style="width: 20%; margin-top: 5%;"></img>
     <p style="font-size: 1.5em;">Вас приветствует сервис администрирования приложений на сервере GTVi-APP011</p>
+    <br />
+    <p>
+        Выберите что бы вы хотели сделать
+    </p>
+
+    <div class="actions">
+        <div class="container">
+            <a asp-area="" asp-controller="AddApp" asp-action="AddApplication">
+                <img src="/src/add-button.png"/>
+                <p>Добавить приложение</p>
+            </a>
+            <a asp-area="" asp-controller="ApplicationsList" asp-action="ApplicationsList">
+                <img src="/src/document-text.png"/>
+                <p>Получить список размещенных приложений</p>
+            </a>
+            <a asp-area="" asp-controller="ServerConfig" asp-action="ServerConfiguration">
+                <img src="/src/settings.png"/>
+                <p>Получить сведения о системе</p>
+            </a>
+        </div>
+    </div>
 </div>

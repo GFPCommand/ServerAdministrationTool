@@ -129,3 +129,14 @@ body {
 .list-elem {
   text-decoration: underline;
 }
+
+.actions .container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.actions .container a {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}

@@ -17,30 +17,30 @@
                     <label class="side-button-2" for="side-checkbox">+</label>    
                     <div class="side-title" style="text-align: center;">GTVi-APP011</div>
                     <div class="list">
-                    <a href="" class="side-bar-elem">
-                        <img src="/add-button.png" alt="Add" style="width: 20%">
-                        <span>Добавить приложение</span>
-                    </a>
-                    <a href="" class="side-bar-elem">
-                        <img src="/document-text.png" alt="List" style="width: 20%">
-                        <span>Список приложений</span>
-                    </a>
-                    <a href="" class="side-bar-elem">
-                        <img src="/settings.png" alt="Settings" style="width: 15%">
-                        <span>Информация о сервере</span>
-                    </a>
-                    <a class="side-bar-elem bottom-elem" asp-area="" asp-controller="Home" asp-action="Help">
-                        <img src="/help.png" alt="Help" style="width: 15%;">
-                        <span>Помощь</span>
-                    </a>
+                        <a class="side-bar-elem" asp-area="" asp-controller="AddApp" asp-action="AddApplication">
+                            <img src="/src/add-button.png" alt="Add" style="width: 20%">
+                            <span>Добавить приложение</span>
+                        </a>
+                        <a class="side-bar-elem" asp-area="" asp-controller="ApplicationsList" asp-action="ApplicationsList">
+                            <img src="/src/document-text.png" alt="List" style="width: 20%">
+                            <span>Список приложений</span>
+                        </a>
+                        <a class="side-bar-elem" asp-area="" asp-controller="ServerConfig" asp-action="ServerConfiguration">
+                            <img src="/src/settings.png" alt="Settings" style="width: 15%">
+                            <span>Информация о сервере</span>
+                        </a>
+                        <a class="side-bar-elem bottom-elem" asp-area="" asp-controller="Home" asp-action="Help">
+                            <img src="/src/info-square.png" alt="Help" style="width: 15%;">
+                            <span>Помощь</span>
+                        </a>
                     </div>
                 </div>
                 <div class="side-button-1-wr" >
                     <label class="side-button-1" for="side-checkbox">
-                        <img class="side-b side-open" src="/hamburger-menu-light.png" style="width: 20%; background: none; margin-left: 5%"></img>
+                        <img class="side-b side-open" src="/src/hamburger-menu-light.png" style="width: 20%; background: none; margin-left: 5%"></img>
                     </label>
                 </div>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Server Administration Tool</a>
+                <label class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Server Administration Tool</label>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -71,20 +71,15 @@
         <a href="" class="side-bar-elem bottom-elem">
             <img src="/help.png" alt="Help" style="width: 85%;">
         </a>
-    </div> *@
-
     </div>
+
+    </div>*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Server Administration Tool
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
