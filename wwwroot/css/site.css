@@ -1,0 +1,131 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  cursor: default;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Оформление панели */
+#side-checkbox {
+  display: none;
+}
+.side-panel {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: -360px;
+  background: #337AB7;
+  transition: all 0.5s;   
+  width: 320px;
+  height: 100vh;
+  box-shadow: 10px 0 20px rgba(0,0,0,0.4);
+  color: #FFF;
+  padding: 40px 20px;
+}
+.side-title {
+  font-size: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #BFE2FF;
+}
+/* Оформление кнопки на странице */
+
+.side-button-1 .side-b {
+  text-decoration: none;
+  position: relative;
+  color: #FFF;
+  text-transform: uppercase; 
+  font-family: 'Roboto', Тahoma, sans-serif;
+  background: #337AB7;
+  cursor: pointer; 
+}
+.side-button-1 .side-b:hover,
+.side-button-1 .side-b:active,
+.side-button-1 .side-b:focus {
+  color: #FFF;
+}
+.side-button-1 .side-b:after,
+.side-button-1 .side-b:before {
+  position: absolute;
+  height: 4px;
+  left: 50%;
+  bottom: -6px;
+  transition: all 280ms ease-in-out;
+}
+
+.side-button-1 .side-b:before {
+  top: -6px;
+}
+.side-button-1 .side-b:hover:after,
+.side-button-1 .side-b:hover:before {
+  width: 100%;
+  left: 0;
+}
+/* Переключатели кнопки 1 */
+
+#side-checkbox:checked + .side-panel {
+  left: 0;
+}
+/* Оформление кнопки на панеле */
+.side-button-2 {
+  font-size: 30px;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  transform: rotate(45deg);
+  color: #BFE2FF;    
+  transition: all 280ms ease-in-out;    
+}
+.side-button-2:hover {
+  transform: rotate(45deg) scale(1.1);    
+  color: #FFF;
+}
+
+.side-bar {
+  position: fixed;
+  width: 5%;
+  background-color: #dcdddd;
+  flex-direction: column;
+}
+
+.side-bar-elem {
+  display: block;
+  padding: 1em;
+  border: solid 1px rgb(86, 150, 245);
+  background-color: #FFF;
+  text-decoration: none;
+}
+
+.bottom-elem {
+  position: absolute;
+  bottom: 0;
+  margin-right: 5%;
+}
+
+.helper-list {
+  list-style: none;
+}
+
+.list-elem {
+  text-decoration: underline;
+}
