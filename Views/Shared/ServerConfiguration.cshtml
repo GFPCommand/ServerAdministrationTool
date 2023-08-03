@@ -8,16 +8,21 @@
 	<center><h2>Общие сведения о сервере приложений</h2></center>
 	<p>Сервер работает под управлением: @os</p>
 	<p>
-		Развернутые приложения на сервере: <br>
-		<a id="applications-list" style="text-decoration: underline; cursor: pointer;">Показать</a>
+		<div id="applications-list" class="server-info">
+			<img class="open-button" src="/src/close-circle.png" style="transform: rotate(45deg)"/>
+			<span>Развернутые приложения на сервере:</span>
+		</div>
 		<ul id="apps" style="overflow: hidden; max-height: 0;">
 			@Applications.GetApplications()
 		</ul>
 	</p>
 
 	<p>
-		Пользователи на сервере: <br>
-		<a id="users-list" style="text-decoration: underline; cursor: pointer;">Показать</a>
+		<div id="users-list" class="server-info">
+			<img class="open-button" src="/src/close-circle.png" style="transform: rotate(45deg)"/>
+			<span>Пользователи на сервере:</span>
+		</div>
+		
 		<ul id="users" style="overflow: hidden; max-height: 0;">
 			@Users.GetUsers()
 		</ul>

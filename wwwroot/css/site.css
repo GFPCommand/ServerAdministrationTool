@@ -148,6 +148,7 @@ body {
   padding: 1%;
   margin: 1em;
   justify-content: start;
+  user-select: none;
 }
 
 .app-item .app-info {
@@ -165,4 +166,74 @@ body {
   color: black;
   background-color: #BFE2FF;
   cursor: pointer;
+}
+
+.open-button {
+    width: 2.5rem;
+}
+
+#applications-list:hover, #users-list:hover{
+    background-color: #d5d5d5;
+    cursor: pointer;
+}
+
+.server-info {
+    padding: 1rem;
+    border-bottom: solid 1px gray;
+    border-top: solid 1px gray;
+}
+
+#apps {
+    list-style-type: '- ';
+}
+
+#add-img:hover {
+    animation: scale 2s linear infinite;
+}
+
+#list-img:hover {
+    animation: updown 2s linear infinite;
+}
+
+#gear-img:hover {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-1em);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(1em);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
