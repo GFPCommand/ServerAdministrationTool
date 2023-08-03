@@ -1,3 +1,29 @@
 ﻿@{
 	ViewData["Title"] = "Информация о сервере";
+
+	var os = Environment.OSVersion;
 }
+
+<div>
+	<center><h2>Общие сведения о сервере приложений</h2></center>
+	<p>Сервер работает под управлением: @os</p>
+	<p>
+		Развернутые приложения на сервере: <br>
+		<a id="applications-list" style="text-decoration: underline; cursor: pointer;">Показать</a>
+		<ul id="apps" style="overflow: hidden; max-height: 0;">
+			@Applications.GetApplications()
+		</ul>
+	</p>
+
+	<p>
+		Пользователи на сервере: <br>
+		<a id="users-list" style="text-decoration: underline; cursor: pointer;">Показать</a>
+		<ul id="users" style="overflow: hidden; max-height: 0;">
+			@Users.GetUsers()
+		</ul>
+	</p>
+
+	<p>
+
+	</p>
+</div>

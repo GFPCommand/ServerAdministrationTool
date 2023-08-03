@@ -140,3 +140,29 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.app-item {
+  display: flex;
+  border: solid black 1px;
+  border-radius: 0.5em;
+  padding: 1%;
+  margin: 1em;
+  justify-content: start;
+}
+
+.app-item .app-info {
+  margin: 2%;
+}
+
+.app-control {
+  margin: 3%;
+}
+
+.app-control a {
+  padding: 1em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  color: black;
+  background-color: #BFE2FF;
+  cursor: pointer;
+}
