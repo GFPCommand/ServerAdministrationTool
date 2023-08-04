@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -146,7 +146,7 @@ body {
   }
 
   .elements > div{
-    display: none;
+    opacity: 0;
   }
 
 .app-item {
@@ -213,6 +213,24 @@ body {
 .open-button {
   transition: transform .2s ease-in-out;
 }
+
+.app-description {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem;
+    text-align: center;
+}
+
+.app-description a, .app-description div {
+    padding: 1rem;
+    width: 125%;
+}
+
+.app-description .input-fields {
+    display: flex;
+    flex-direction: column;
+}
+
 
 @keyframes spin {
     0% {
