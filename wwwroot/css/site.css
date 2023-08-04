@@ -141,6 +141,14 @@ body {
     color: black;
 }
 
+  .elements {
+    overflow: hidden;
+  }
+
+  .elements > div{
+    display: none;
+  }
+
 .app-item {
   display: flex;
   border: solid black 1px;
@@ -199,6 +207,13 @@ body {
     animation: spin 4s linear infinite;
 }
 
+.rot {
+  transform: rotate(45deg);
+}
+.open-button {
+  transition: transform .2s ease-in-out;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -231,7 +246,7 @@ body {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.15);
+        transform: scale(1.1);
     }
     100% {
         transform: scale(1);

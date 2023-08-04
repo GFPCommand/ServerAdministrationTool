@@ -4,7 +4,20 @@
 
 <div>
 	<center><h2>Список развернутых приложений на сервере</h2></center>
-	<div class="content">
+	<div class="elements">
 		@Applications.GetApplicationsList()
 	</div>
+	<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$('.elements div:eq(0)').animate({width: "toggle"}, 100, function(){
+	$(this).next().animate({width: "toggle"}, 100, arguments.callee);
+});
+
+var elemAppInfo = document.querySelectorAll('.app-info');
+elemAppInfo.forEach((el) => el.style.display = 'inline-block');
+
+var elemAppControl = document.querySelectorAll('.app-control');
+elemAppControl.forEach((el) => el.style.display = 'inline-block');
+
+</script>
 </div>
