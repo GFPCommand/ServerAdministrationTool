@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "admin": {
+        "pswd": "8b29b6bf529a43f8c92ced4738fd60622bf5a7773a7ce9acbe97c98518c71ce4",
+        "role": "Admin"
+      }
+    },
+    {
+      "user": {
+        "pswd": "123",
+        "role": "user"
+      }
+    }
+  ]
+}

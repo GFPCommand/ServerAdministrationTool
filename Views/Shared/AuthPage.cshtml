@@ -1,0 +1,36 @@
+@model AuthorityModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<style>
+    header #side-checkbox, header .side-panel, header .side-button-1-wr {
+    display: none;
+    }
+
+    header .navbar-brand {
+    pointer-events: none;
+    cursor: default;
+    }
+</style>
+
+<div class="auth-block">
+    <h2>Авторизация</h2>
+    <form method="post" asp-controller="Authority" asp-action="AuthPage">
+        <div class="form-group">
+            <label>Введите логин:</label>
+            <input type="text" name="login" required><br>
+        </div>
+        <div class="form-group">
+            <label>Введите пароль:</label>
+            <input type="password" name="pswd" required><br>
+        </div>
+        @if (!Model.isCorrect)
+        {
+            <p style="color: red;">Неверный логин и/или пароль</p>
+        }
+        <div class="form-group">
+            <input type="submit" value="Войти" class="btn" style="background-color: rgb(130, 169, 240);">
+        </div>
+    </form>
+</div>

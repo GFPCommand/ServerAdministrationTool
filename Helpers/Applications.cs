@@ -29,6 +29,7 @@ namespace Helpers {
 			                <a class='control'>Запуск</a>
 			                <a class='control'>Перезапуск</a>
 			                <a class='control'>Остановка</a>
+                            <a class='control'>Обновление</a>
 		                </div>
 	                </div>
                 ");

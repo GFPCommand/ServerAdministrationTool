@@ -1,14 +1,18 @@
 using System.Text;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Server_Administration_Tool.Models;
 
 namespace Helpers {
     public static class Users {
         public static HtmlString GetUsers() {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 10; i++) {
-                char c = Convert.ToChar(i);
-                sb.Append($"<li>{c}</li>");
+            DataLoader loader = new();
+
+            StringBuilder sb = new();
+
+            foreach (var item in loader.Users())
+            {
+                sb.Append($"<li>{item}</li>");
             }
 
             return new HtmlString(sb.ToString());

@@ -231,6 +231,26 @@ body {
     flex-direction: column;
 }
 
+.auth-block {
+  margin: 0 auto;
+  width: 35%;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  padding: 1% 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group > .btn {
+  margin: 0 auto;
+  width: 40%;
+}
 
 @keyframes spin {
     0% {
