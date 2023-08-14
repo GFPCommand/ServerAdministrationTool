@@ -1,13 +1,18 @@
 using System.Text;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Server_Administration_Tool.Models;
 
 namespace Helpers {
     public static class Applications {
         public static HtmlString GetApplications() {
+            DataLoader loader = new();
+
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 10; i++) {
-                sb.Append($"<li>{i}</li>");
+
+            foreach (var app in loader.Apps()) 
+            {
+                sb.Append($"<li>{app}</li>");
             }
 
             return new HtmlString(sb.ToString());

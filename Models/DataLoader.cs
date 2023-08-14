@@ -6,22 +6,26 @@ namespace Server_Administration_Tool.Models
 {
     public class DataLoader
     {
-        readonly string jsonLoad = string.Empty;
+        readonly string jsonLoadUsers = string.Empty;
+        readonly string jsonLoadApps  = string.Empty;
 
-        private readonly JsonDocument doc;
+        private readonly JsonDocument docUsers;
+        private readonly JsonDocument docApps;
 
         public DataLoader()
         {
-            jsonLoad = File.ReadAllText("users.json");
+            jsonLoadUsers = File.ReadAllText("users.json");
+            jsonLoadApps  = File.ReadAllText("apps.json");
 
-            doc = JsonDocument.Parse(jsonLoad);
+            docUsers = JsonDocument.Parse(jsonLoadUsers);
+            docApps  = JsonDocument.Parse(jsonLoadApps);
         }
 
         public bool ReadUserPassword(string login, string password)
         {
             try
             {
-                JsonElement elem = doc.RootElement;
+                JsonElement elem = docUsers.RootElement;
 
                 foreach (var item in ReadAllUsers(elem))
                 {
@@ -39,15 +43,18 @@ namespace Server_Administration_Tool.Models
 
         private JsonElement.ArrayEnumerator ReadAllUsers(JsonElement rootElement)
         {
-
             return rootElement.GetProperty("users").EnumerateArray();
+        }
+
+        private JsonElement.ArrayEnumerator ReadAllApps(JsonElement rootElement){
+            return rootElement.GetProperty("apps").EnumerateArray();
         }
         
         public List<string> Users()
         {
             List<string> users = new();
 
-            foreach (var item in ReadAllUsers(doc.RootElement))
+            foreach (var item in ReadAllUsers(docUsers.RootElement))
             {
                 string elem = item.GetRawText();
 
@@ -62,6 +69,18 @@ namespace Server_Administration_Tool.Models
             }
 
             return users;
+        }
+
+        public List<string> Apps()
+        {
+            List<string> apps = new();
+
+            foreach (var item in ReadAllApps(docApps.RootElement))
+            {
+                apps.Add(item.GetString());
+            }
+
+            return apps;
         }
     }
 }
