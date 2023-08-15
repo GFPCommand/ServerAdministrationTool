@@ -12,7 +12,7 @@ namespace Server_Administration_Tool.Models
             _loader = new DataLoader();
         }
 
-        private string DataHash(string password)
+        private string DataHash(string? password)
         {
             byte[] bytes;
 
@@ -31,6 +31,6 @@ namespace Server_Administration_Tool.Models
             return Convert.ToHexString(bytes).ToLower();
         }
 
-        public bool LoginDataIsCorrect(string login, string password) => _loader.ReadUserPassword(login, DataHash(DataHash(password)));
+        public bool LoginDataIsCorrect(string? login, string? password) => _loader.ReadUserPassword(login, DataHash(DataHash(password)));
     }
 }

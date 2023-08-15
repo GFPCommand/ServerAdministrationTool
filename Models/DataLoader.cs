@@ -6,6 +6,9 @@ namespace Server_Administration_Tool.Models
 {
     public class DataLoader
     {
+        private const string USERS_FILE = "users.json";
+        private const string APPS_FILE = "apps.json";
+
         readonly string jsonLoadUsers = string.Empty;
         readonly string jsonLoadApps  = string.Empty;
 
@@ -14,14 +17,14 @@ namespace Server_Administration_Tool.Models
 
         public DataLoader()
         {
-            jsonLoadUsers = File.ReadAllText("users.json");
-            jsonLoadApps  = File.ReadAllText("apps.json");
+            jsonLoadUsers = File.ReadAllText(USERS_FILE);
+            jsonLoadApps  = File.ReadAllText(APPS_FILE);
 
             docUsers = JsonDocument.Parse(jsonLoadUsers);
             docApps  = JsonDocument.Parse(jsonLoadApps);
         }
 
-        public bool ReadUserPassword(string login, string password)
+        public bool ReadUserPassword(string? login, string? password)
         {
             try
             {
@@ -41,14 +44,9 @@ namespace Server_Administration_Tool.Models
             return false;
         }
 
-        private JsonElement.ArrayEnumerator ReadAllUsers(JsonElement rootElement)
-        {
-            return rootElement.GetProperty("users").EnumerateArray();
-        }
+        private JsonElement.ArrayEnumerator ReadAllUsers(JsonElement rootElement) => rootElement.GetProperty("users").EnumerateArray();
 
-        private JsonElement.ArrayEnumerator ReadAllApps(JsonElement rootElement){
-            return rootElement.GetProperty("apps").EnumerateArray();
-        }
+        private JsonElement.ArrayEnumerator ReadAllApps(JsonElement rootElement) => rootElement.GetProperty("apps").EnumerateArray();
         
         public List<string> Users()
         {

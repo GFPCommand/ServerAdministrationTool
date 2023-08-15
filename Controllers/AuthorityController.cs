@@ -14,28 +14,28 @@ namespace Server_Administration_Tool.Controllers;
 [AllowAnonymous]
 public class AuthorityController : Controller
 {
-    private AuthorityModel _authModel = new();
+    private User _user = new();
 
     private Authority auth = new();
 
     public IActionResult AuthPage()
     {
-        return View(_authModel);
+        return View(_user);
     }
 
     [HttpPost]
     public IActionResult AuthPage(string? login, string? pswd)
     {
-        _authModel.Login = login;
-        _authModel.Password = pswd;
+        _user.Login = login;
+        _user.Password = pswd;
 
         if (auth.LoginDataIsCorrect(login, pswd))
         {
-            _authModel.isCorrect = true;
+            _user.isCorrect = true;
 
             return View("../Home/Index");
-        } else _authModel.isCorrect = false;
+        } else _user.isCorrect = false;
 
-        return View(_authModel);
+        return View(_user);
     }
 }

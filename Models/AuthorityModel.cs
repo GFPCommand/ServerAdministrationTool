@@ -1,6 +1,6 @@
 ﻿namespace Server_Administration_Tool.Models
 {
-	public class AuthorityModel
+	public class User
 	{
 		public string? Login { get; set; }
 
