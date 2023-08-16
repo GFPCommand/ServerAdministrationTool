@@ -1,0 +1,5 @@
+https://www.freedesktop.org/software/systemd/man/systemctl.html
+https://www.dmosk.ru/miniinstruktions.php?mini=systemctl
+https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units-ru
+https://basicweb.ru/jquery/jquery_method_ajax.php
+https://api.jquery.com/jquery.ajax/
