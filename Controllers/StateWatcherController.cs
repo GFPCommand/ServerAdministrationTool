@@ -1,9 +1,10 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace Server_Administration_Tool.Controllers
 {
-    public class StateWatcherControlle : Controller
+    public class StateWatcherController : Controller
     {
         public string CheckState()
         {
@@ -27,11 +28,19 @@ namespace Server_Administration_Tool.Controllers
                 proc.WaitForExit();
             } else if (OperatingSystem.IsWindows())
             {
-                string app = string.Empty;
+                //string app = string.Empty;
 
-                Process[] proc = Process.GetProcessesByName(app);
+                //Process[] proc = Process.GetProcessesByName(app);
 
-                output = proc.Length > 0 ? "OK" : "Stopped";
+                //output = proc.Length > 0 ? "OK" : "Stopped";
+
+                Dictionary<string, string> a = new Dictionary<string, string>();
+
+                a.Add("ewrdg","jfn");
+                a.Add("sdff","dsd");
+                a.Add("wedsfg","rdg");
+
+                output = JsonSerializer.Serialize(a);
             }
 
             return output;

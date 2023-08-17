@@ -36,10 +36,7 @@ namespace Server_Administration_Tool.Models
                         return true;
                 }
             }
-            catch
-            {
-                return false;
-            }
+            catch {}
 
             return false;
         }

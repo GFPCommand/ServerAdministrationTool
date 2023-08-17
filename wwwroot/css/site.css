@@ -141,13 +141,13 @@ body {
     color: black;
 }
 
-  .elements {
-    overflow: hidden;
-  }
+/*.elements {
+overflow: hidden;
+}
 
-  .elements > div{
-    opacity: 0;
-  }
+.elements > div{
+opacity: 0;
+}*/
 
 .app-item {
   display: flex;
