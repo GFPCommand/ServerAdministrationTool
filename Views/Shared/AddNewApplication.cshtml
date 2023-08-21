@@ -1,0 +1,21 @@
+﻿@{
+	ViewData["Title"] = "Добавить приложение";
+}
+
+<center><h2>Добавить приложение на сервер</h2></center>
+
+<div class="app-description">
+	<input id="open-file" type="file" style="display: none;" accept="image/*">
+	<a id="upload-image">
+		<img id="main-image" src="/src/gallery-add.png" alt="Приложение">
+		<p>Изменить изображение</p>
+	</a>
+	<div class="input-fields" style="text-align: initial;">
+		<span>Название приложения</span>
+		<input type="text">
+		<span>Описание</span>
+		<textarea style="height: 100%; resize: none;"></textarea>
+	</div>
+</div>
+
+<script src="/js/file-upload.js"></script>

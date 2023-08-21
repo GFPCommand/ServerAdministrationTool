@@ -3,15 +3,15 @@
 }
 
 <div>
-	<center><h2 id="smth">Список развернутых приложений на сервере</h2></center>
+	<center><h2>Список развернутых приложений на сервере</h2></center>
 	<div class="elements">
 		@Applications.GetApplicationsList()
 	</div>
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<script>
-		//$('.elements div:eq(0)').animate({opacity: 1}, 100, function(){
-		//	$(this).next().animate({opacity: 1}, 100, arguments.callee);
-		//});
+		$('.elements div:eq(0)').animate({opacity: 1}, 100, function(){
+			$(this).next().animate({opacity: 1}, 100, arguments.callee);
+		});
 	</script>
 	<script src="~/js/state-updater.js"></script>
 </div>

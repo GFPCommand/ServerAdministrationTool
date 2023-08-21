@@ -1,24 +1,18 @@
-﻿@{
-	ViewData["Title"] = "Добавить приложение";
+@{
+    ViewData["Title"] = "Добавление приложения";
 }
 
-<center><h2>Добавить приложение на сервер</h2></center>
+<center><h2>Выберите формат добавления приложения на сервер</h2></center>
 
-<div class="app-description">
-	<a id="upload-image">
-		<img src="/src/application.png" alt="Приложение" style="cursor: pointer;">
-		<p style="top: -1rem; cursor: pointer;">Изменить изображение</p>
-	</a>
-	<div class="input-fields" style="text-align: initial;">
-		<span>Название приложения</span>
-		<input type="text">
-		<span>Описание</span>
-		<textarea style="height: 100%; resize: none;"></textarea>
-	</div>
+<div class="actions" style="margin: 5%;">
+    <div class="container">
+        <a class="new-app" asp-controller="AddApp" asp-action="AddNewApplication">
+        <img src="/src/upload.png" alt="New App">
+        <p>Добавить новое приложение на сервер</p>
+    </a>
+    <a class="exs-app" asp-controller="AddApp" asp-action="AddExistingApplication">
+        <img src="/src/code.png" alt="Existing App">
+        <p>Добавить существующее приложение на сервере в список</p>
+    </a>
+    </div>
 </div>
-
-<script>
-	var upload = document.getElementById('upload-image');
-
-	
-</script>
