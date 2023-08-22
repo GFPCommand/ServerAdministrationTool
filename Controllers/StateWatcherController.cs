@@ -34,13 +34,12 @@ namespace Server_Administration_Tool.Controllers
 
                 //output = proc.Length > 0 ? "OK" : "Stopped";
 
-                Dictionary<string, string> a = new Dictionary<string, string>();
+                using (StreamReader reader = new(System.IO.File.OpenRead(@"C:\Users\as.kutashov\file.txt")))
+                {
+                    string a = reader.ReadToEnd();
 
-                a.Add("ewrdg","jfn");
-                a.Add("sdff","dsd");
-                a.Add("wedsfg","rdg");
-
-                output = JsonSerializer.Serialize(a);
+                    output = JsonSerializer.Serialize(a);
+                }
             }
 
             return output;

@@ -9,7 +9,17 @@ namespace Server_Administration_Tool.Controllers
             return View();
         }
 
-        public IActionResult AddApplication()
+        public IActionResult AddApplication() 
+        {
+            return View();
+        }
+
+        public IActionResult AddNewApplication()
+        {
+            return View();
+        }
+
+        public IActionResult AddExistingApplication()
         {
             return View();
         }
