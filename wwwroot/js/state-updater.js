@@ -10,5 +10,3 @@
         }
     });
 }
-
-var func = setInterval(update, 1);

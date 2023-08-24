@@ -51,16 +51,7 @@ namespace Server_Administration_Tool.Models
 
             foreach (var item in ReadAllUsers(docUsers.RootElement))
             {
-                string elem = item.GetRawText();
-
-                int index = elem.IndexOf(":");
-
-                elem = elem.Remove(index);
-                elem = elem.Remove(elem.Length - 1);
-                elem = elem.Remove(0,1);
-                elem = elem.Replace("\"", "");
-
-                users.Add(elem);
+                users.Add(item.GetRawText().Trimmer());
             }
 
             return users;
@@ -72,10 +63,25 @@ namespace Server_Administration_Tool.Models
 
             foreach (var item in ReadAllApps(docApps.RootElement))
             {
-                apps.Add(item.GetString());
+				apps.Add(item.GetRawText().Trimmer());
             }
 
             return apps;
         }
+    }
+
+    public static class StringExtension
+    {
+        public static string Trimmer(this string str)
+        {
+			int index = str.IndexOf(":");
+
+			str = str.Remove(index);
+			str.Remove(str.Length - 1);
+			str = str.Remove(0, 1);
+			str = str.Replace("\"", "");
+
+            return str;
+		}
     }
 }
