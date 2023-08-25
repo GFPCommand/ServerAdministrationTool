@@ -34,12 +34,20 @@ namespace Server_Administration_Tool.Controllers
 
                 //output = proc.Length > 0 ? "OK" : "Stopped";
 
-                using (StreamReader reader = new(System.IO.File.OpenRead(@"C:\Users\as.kutashov\file.txt")))
-                {
-                    string a = reader.ReadToEnd();
+                // // using (StreamReader reader = new(System.IO.File.OpenRead(@"C:\Users\as.kutashov\file.txt")))
+                // // {
+                // //     string a = reader.ReadToEnd();
 
-                    output = JsonSerializer.Serialize(a);
-                }
+                // //     output = JsonSerializer.Serialize(a);
+                // // }
+
+                string a = string.Empty;
+
+                Random random = new();
+
+                a = random.Next(100).ToString();
+
+                output = JsonSerializer.Serialize(a);
             }
 
             return output;
