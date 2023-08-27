@@ -7,11 +7,11 @@
 	<div class="elements">
 		@Applications.GetApplicationsList()
 	</div>
+	<script src="/js/state-watcher.js"></script>
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<script>
 		$('.elements div:eq(0)').animate({opacity: 1}, 100, function(){
 			$(this).next().animate({opacity: 1}, 100, arguments.callee);
 		});
 	</script>
-	<script src="~/js/state-updater.js"></script>
 </div>
