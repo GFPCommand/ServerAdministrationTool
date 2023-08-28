@@ -8,7 +8,7 @@ namespace Helpers {
         public static HtmlString GetApplications() {
             DataLoader loader = new();
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             foreach (var app in loader.Apps()) 
             {
@@ -19,11 +19,11 @@ namespace Helpers {
         }
 
         public static HtmlString GetApplicationsList() {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new ();
 
             int[] arr = new int[11];
 
-            Random r = new Random();
+            Random r = new ();
 
             for (int i = 1; i <= arr.Length-1; i++){
                 arr[i] = r.Next(3);
@@ -34,15 +34,15 @@ namespace Helpers {
                 switch (arr[i])
                 {
                     case 0:
-                        state = "OK";
+                        state = AppsStates.OK.ToString();
                         color = "#BDECB6"; // светло-зеленый
                         break;
                     case 1:
-                        state = "Failed";
+                        state = AppsStates.Fail.ToString();
                         color = "#FA8072"; // salmon
                         break;
                     case 2:
-                        state = "Stopped";
+                        state = AppsStates.Stopped.ToString();
                         color = "#D3D3D3"; // светло-серый
                         break;
                 }
@@ -57,10 +57,10 @@ namespace Helpers {
 		                </div>
 		                <div class='app-control'>
 			                <a class='control'>Запуск</a>
-			                <a class='control'>Перезапуск</a>
+			                <a class='control' data-bs-toggle='modal' data-bs-target='#restart-modal'>Перезапуск</a>
 			                <a class='control'>Остановка</a>
-                            <a class='control'>Обновление</a>
-                            <a class='control'>Информация</a>
+                            <a class='control' data-bs-toggle='modal' data-bs-target='#update-modal'>Обновление</a>
+                            <a class='control' data-bs-toggle='modal' data-bs-target='#info-modal'>Информация</a>
 		                </div>
 	                </div>
                 ");

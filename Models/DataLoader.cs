@@ -77,7 +77,7 @@ namespace Server_Administration_Tool.Models
 			int index = str.IndexOf(":");
 
 			str = str.Remove(index);
-			str.Remove(str.Length - 1);
+			str = str.Remove(str.Length - 1);
 			str = str.Remove(0, 1);
 			str = str.Replace("\"", "");
 
