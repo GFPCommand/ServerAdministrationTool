@@ -5,12 +5,13 @@ using Server_Administration_Tool.Models;
 
 namespace Helpers {
     public static class Applications {
-        public static HtmlString GetApplications() {
-            DataLoader loader = new();
 
+        private static readonly DataLoader s_loader = new();
+
+        public static HtmlString GetApplications() {
             StringBuilder sb = new();
 
-            foreach (var app in loader.Apps()) 
+            foreach (var app in s_loader.Apps()) 
             {
                 sb.Append($"<li>{app}</li>");
             }

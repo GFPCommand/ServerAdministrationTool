@@ -33,7 +33,7 @@ public class AuthorityController : Controller
         {
             _user.isCorrect = true;
 
-            return View("../Home/Index");
+            return RedirectToAction("Index", "Home");
         } else _user.isCorrect = false;
 
         return View(_user);
