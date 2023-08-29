@@ -57,9 +57,9 @@ namespace Helpers {
 			                <span>Состояние: {state}</span>
 		                </div>
 		                <div class='app-control'>
-			                <a class='control'>Запуск</a>
+			                <a class='control' href='/Apps/StartApplication?app={i}'>Запуск</a>
 			                <a class='control' data-bs-toggle='modal' data-bs-target='#restart-modal'>Перезапуск</a>
-			                <a class='control'>Остановка</a>
+			                <a class='control' href='/Apps/StopApplication?app={i}'>Остановка</a>
                             <a class='control' data-bs-toggle='modal' data-bs-target='#update-modal'>Обновление</a>
                             <a class='control' data-bs-toggle='modal' data-bs-target='#info-modal'>Информация</a>
 		                </div>
