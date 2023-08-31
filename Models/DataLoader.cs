@@ -68,6 +68,18 @@ namespace Server_Administration_Tool.Models
 
             return apps;
         }
+
+        public List<Application> AppInfo()
+        {
+            List<Application> info = new();
+
+            foreach (var item in ReadAllApps(docApps.RootElement))
+            {
+
+            }
+
+            return info;
+        }
     }
 
     public static class StringExtension

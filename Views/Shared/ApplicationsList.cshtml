@@ -2,7 +2,16 @@
 @{
   List<Application> apps = new List<Application>();
 
-    apps.Add(new Application());
+    apps.Add(new Application() {
+        Name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, 
+        Path = "/home/user/sat",
+        Size = 123,
+        Version = "1.1.1",
+        UploadDate = DateTime.Today,
+        LastUpdate = DateTime.Today,
+        Description = "Smth",
+        Link = "https://www.ya.ru"
+    });
 
 	ViewData["Title"] = "Список приложений";
 }
@@ -31,12 +40,12 @@
       <div class="modal-body">
         <p>Name: @apps[0].Name</p>
         <p>Path: @apps[0].Path</p>
-        <p>Size: @apps[0].Size</p>
+        <p>Size: @apps[0].Size Kb</p>
         <p>Version: @apps[0].Version</p>
         <p>Upload date: @apps[0].UploadDate</p>
         <p>Last update: @apps[0].LastUpdate</p>
         <p>Description: @apps[0].Description</p>
-        <p>Link: <a href="#">@apps[0].Link</a></p>
+        <p>Link: <a href="@apps[0].Link">@apps[0].Link</a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -81,4 +90,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>`

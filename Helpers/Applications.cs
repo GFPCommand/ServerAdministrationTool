@@ -22,17 +22,18 @@ namespace Helpers {
         public static HtmlString GetApplicationsList() {
             StringBuilder sb = new ();
 
-            int[] arr = new int[11];
+            var apps = s_loader.Apps();
 
             Random r = new ();
 
-            for (int i = 1; i <= arr.Length-1; i++){
-                arr[i] = r.Next(3);
-
+            foreach (var item in apps)
+            {
                 string state = string.Empty;
                 string color = string.Empty;
 
-                switch (arr[i])
+                int smth = r.Next(3);
+
+                switch (smth)
                 {
                     case 0:
                         state = AppsStates.OK.ToString();
@@ -52,14 +53,14 @@ namespace Helpers {
                     <div class='app-item' style='background-color: {color}'>
 		                <img src='/src/hamburger-menu.png' alt='image for application' style='width: 5vw;'>
 		                <div class='app-info'>
-			                <span>Приложение {i}</span>
+			                <span>Приложение: {item}</span>
 			                <br>
 			                <span>Состояние: {state}</span>
 		                </div>
 		                <div class='app-control'>
-			                <a class='control' href='/Apps/StartApplication?app={i}'>Запуск</a>
+			                <a class='control' href='/Apps/StartApplication?app={item}'>Запуск</a>
 			                <a class='control' data-bs-toggle='modal' data-bs-target='#restart-modal'>Перезапуск</a>
-			                <a class='control' href='/Apps/StopApplication?app={i}'>Остановка</a>
+			                <a class='control' href='/Apps/StopApplication?app={item}'>Остановка</a>
                             <a class='control' data-bs-toggle='modal' data-bs-target='#update-modal'>Обновление</a>
                             <a class='control' data-bs-toggle='modal' data-bs-target='#info-modal'>Информация</a>
 		                </div>

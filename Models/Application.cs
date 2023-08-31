@@ -3,22 +3,22 @@
     [Serializable]
 	public class Application
 	{
-		public string Name { get; private set; }
+		public string Name { get; set; }
 
-        public string Path { get; private set; }
+        public string Path { get; set; }
 
-        public int Size { get; private set; }
+        public int Size { get; set; }
 
-        public string Version { get; private set; }
+        public string Version { get; set; }
 
-        public string Service { get; private set; }
+        public string Service { get; set; }
 
-        public DateTime UploadDate { get; private set; }
+        public DateTime UploadDate { get; set; }
 
-        public DateTime LastUpdate { get; private set; }
+        public DateTime LastUpdate { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        public string Link { get; private set; }
+        public string Link { get; set; }
     }
 }
