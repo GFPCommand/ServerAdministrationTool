@@ -10,10 +10,15 @@
     },
     {
       "app2": {
-        "Description": "Smth",
+        "Name": "app_name",
         "Path": "path to folder",
+        "Size": "123",
+        "Version": "1.1.1",
         "Service": "Path to *.service file",
-        "Icon": "Path to app icon"
+        "UploadDate": "01.01.23",
+        "LastUpdate": "01.01.23",
+        "Description": "Smth",
+        "Link": "/"
       }
     }
   ]

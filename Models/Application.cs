@@ -11,6 +11,8 @@
 
         public string Version { get; private set; }
 
+        public string Service { get; private set; }
+
         public DateTime UploadDate { get; private set; }
 
         public DateTime LastUpdate { get; private set; }
