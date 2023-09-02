@@ -12,25 +12,17 @@ namespace Server_Administration_Tool.Models
             _loader = new DataLoader();
         }
 
-        private string DataHash(string? password)
+        private string DataHash(string password)
         {
             byte[] bytes;
 
-            string str = string.Empty;
+            using SHA256 hash = SHA256.Create();
 
-            using (SHA256 hash = SHA256.Create())
-            {
-                bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                foreach (var b in bytes)
-                {
-                    str += b.ToString();
-                }
-            }
+            bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(password!));
 
             return Convert.ToHexString(bytes).ToLower();
         }
 
-        public bool LoginDataIsCorrect(string? login, string? password) => _loader.ReadUserPassword(login, DataHash(DataHash(password)));
+        public bool LoginDataIsCorrect(string? login, string? password) => _loader.ReadUserPassword(login!, DataHash(DataHash(password!)));
     }
 }

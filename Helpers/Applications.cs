@@ -33,18 +33,17 @@ namespace Helpers {
 
                 int smth = r.Next(3);
 
+                state = ((AppsStates)smth).ToString();
+
                 switch (smth)
                 {
                     case 0:
-                        state = AppsStates.OK.ToString();
                         color = "#BDECB6"; // светло-зеленый
                         break;
                     case 1:
-                        state = AppsStates.Fail.ToString();
                         color = "#FA8072"; // salmon
                         break;
                     case 2:
-                        state = AppsStates.Stopped.ToString();
                         color = "#D3D3D3"; // светло-серый
                         break;
                 }
@@ -62,7 +61,7 @@ namespace Helpers {
 			                <a class='control' data-bs-toggle='modal' data-bs-target='#restart-modal'>Перезапуск</a>
 			                <a class='control' href='/Apps/StopApplication?app={item}'>Остановка</a>
                             <a class='control' data-bs-toggle='modal' data-bs-target='#update-modal'>Обновление</a>
-                            <a class='control' data-bs-toggle='modal' data-bs-target='#info-modal'>Информация</a>
+                            <a class='control' data-bs-toggle='modal' data-bs-target='#info-modal' onclick='loadData(`{item}`)'>Информация</a>
 		                </div>
 	                </div>
                 ");

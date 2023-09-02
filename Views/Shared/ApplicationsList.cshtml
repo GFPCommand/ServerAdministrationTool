@@ -1,18 +1,4 @@
-﻿@model Application
-@{
-  List<Application> apps = new List<Application>();
-
-    apps.Add(new Application() {
-        Name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name, 
-        Path = "/home/user/sat",
-        Size = 123,
-        Version = "1.1.1",
-        UploadDate = DateTime.Today,
-        LastUpdate = DateTime.Today,
-        Description = "Smth",
-        Link = "https://www.ya.ru"
-    });
-
+﻿@{
 	ViewData["Title"] = "Список приложений";
 }
 
@@ -22,6 +8,7 @@
 		@Applications.GetApplicationsList()
 	</div>
 	<script src="/js/state-watcher.js"></script>
+    <script src="/js/info-loader.js" defer async></script>
 	<script src="/lib/jquery/dist/jquery.min.js"></script>
 	<script>
 		$('.elements div:eq(0)').animate({opacity: 1}, 100, function(){
@@ -38,14 +25,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        <p>Name: @apps[0].Name</p>
-        <p>Path: @apps[0].Path</p>
-        <p>Size: @apps[0].Size Kb</p>
-        <p>Version: @apps[0].Version</p>
-        <p>Upload date: @apps[0].UploadDate</p>
-        <p>Last update: @apps[0].LastUpdate</p>
-        <p>Description: @apps[0].Description</p>
-        <p>Link: <a href="@apps[0].Link">@apps[0].Link</a></p>
+        <p>Название: <span id="name"></span></p>
+        <p>Путь: <span id="path"></span></p>
+        <p>Размер: <span id="size"></span> Кб</p>
+        <p>Версия: <span id="version"></span></p>
+        <p>Дата загрузки: <span id="upload-date"></span></p>
+        <p>Дата обновления: <span id="last-update"></span></p>
+        <p>Описание: <span id="description"></span></p>
+        <p>Ссылка: <a id="link"></a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -90,4 +77,4 @@
       </div>
     </div>
   </div>
-</div>`
+</div>

@@ -2,15 +2,7 @@
   "apps": [
     {
       "app1": {
-        "Description": "Smth",
-        "Path": "path to folder",
-        "Service": "Path to *.service file",
-        "Icon": "Path to app icon"
-      }
-    },
-    {
-      "app2": {
-        "Name": "app_name",
+        "Name": "app1",
         "Path": "path to folder",
         "Size": "123",
         "Version": "1.1.1",
@@ -18,6 +10,19 @@
         "UploadDate": "01.01.23",
         "LastUpdate": "01.01.23",
         "Description": "Smth",
+        "Link": "//"
+      }
+    },
+    {
+      "app2": {
+        "Name": "app_name",
+        "Path": "path to another folder",
+        "Size": "12345",
+        "Version": "1.1.1.1",
+        "Service": "Path to another *.service file",
+        "UploadDate": "01.02.23",
+        "LastUpdate": "01.02.23",
+        "Description": "Unknown",
         "Link": "/"
       }
     }

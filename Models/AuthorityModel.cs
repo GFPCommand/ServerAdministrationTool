@@ -2,11 +2,11 @@
 {
 	public class User
 	{
-		public string? Login { get; set; }
+		public string Login { get; set; } = null!;
 
-		public string? Password { get; set; }
+		public string Password { get; set; } = null!;
 
-		public string? Role { get; set; }
+		public string Role { get; set; } = null!;
 
 		public bool isCorrect = true;
 	}

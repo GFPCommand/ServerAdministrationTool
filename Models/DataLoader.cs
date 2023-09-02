@@ -24,7 +24,7 @@ namespace Server_Administration_Tool.Models
             docApps  = JsonDocument.Parse(jsonLoadApps);
         }
 
-        public bool ReadUserPassword(string? login, string? password)
+        public bool ReadUserPassword(string login, string? password)
         {
             try
             {
@@ -32,11 +32,13 @@ namespace Server_Administration_Tool.Models
 
                 foreach (var item in ReadAllUsers(elem))
                 {
-                    if (item.GetProperty(login).GetProperty("pswd").ToString().Equals(password))
+                    if (item.GetProperty(login!).GetProperty("pswd").ToString().Equals(password))
                         return true;
                 }
             }
-            catch {}
+            catch {
+                return false;
+            }
 
             return false;
         }
@@ -69,13 +71,24 @@ namespace Server_Administration_Tool.Models
             return apps;
         }
 
-        public List<Application> AppInfo()
+        public string AppInfo(string objName)
         {
-            List<Application> info = new();
+            string info = string.Empty;
 
             foreach (var item in ReadAllApps(docApps.RootElement))
             {
+                if (item.GetRawText().Trimmer().Equals(objName))
+                {
+                    info = item.GetRawText();
 
+                    info = info.Remove(0, 1);
+
+                    int index = info.IndexOf('{');
+
+                    info = info.Remove(0, index - 1);
+
+                    info = info.Remove(info.Length - 1);
+                }
             }
 
             return info;
@@ -92,6 +105,7 @@ namespace Server_Administration_Tool.Models
 			str = str.Remove(str.Length - 1);
 			str = str.Remove(0, 1);
 			str = str.Replace("\"", "");
+            str = str.Trim();
 
             return str;
 		}
