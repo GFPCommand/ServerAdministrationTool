@@ -1,12 +1,20 @@
-﻿@{
+﻿@using System.Net;
+@{
 	ViewData["Title"] = "Информация о сервере";
 
 	var os = Environment.OSVersion;
+	var serverName = Environment.MachineName;
+	IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+	var hostName = Dns.GetHostName();
 }
 
 <div>
 	<center><h2>Общие сведения о сервере приложений</h2></center>
 	<p>Сервер работает под управлением: @os</p>
+	<p>Имя сервера: @serverName</p>
+	<p>Имя хоста сервера: @hostName</p>
+	<p>Адрес сервера IPv4: @localIPs[1]</p>
+	<p>Адрес сервера IPv6: @localIPs[0]</p>
 	<p>
 		<div id="applications-list" class="server-info">
 			<img class="open-button" src="/src/close-circle.png" style="transform: rotate(45deg)"/>
@@ -26,10 +34,6 @@
 		<ul id="users" style="overflow: hidden; max-height: 0;">
 			@Users.GetUsers()
 		</ul>
-	</p>
-
-	<p>
-
 	</p>
 </div>
 
