@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Server_Administration_Tool.Models;
 using System.Diagnostics;
 
@@ -26,27 +24,36 @@ namespace Server_Administration_Tool.Controllers
 
 		public void RestartApplication(string app)
         {
-            //TODO:
-            //restart app: if Linux OS -> systemctl restart {app}
-        }
+			if (OperatingSystem.IsLinux())
+			{
+				ServiceAction(Actions.Restart.ToString(), app);
+			}
+		}
 
         public void ReloadApplication(string app)
         {
-            //TODO:
-            //reload configs and restart app: if Linux OS -> systemctl reload {app}
-        }
+			if (OperatingSystem.IsLinux())
+			{
+				ServiceAction(Actions.Reload.ToString(), app);
+			}
+		}
 
         private void ServiceAction(string actionName, string appName)
         {
-            //TODO:
-            //start app: if Linux OS -> systemctl start {app}
-            return app;
-        }
+			var args = actionName.Contains("Reload") ?
+				$"/c systemctl reload {appName} && systemctl restart {appName}" :
+				$"/c systemctl {actionName.ToLower()} {appName}";
 
-        public void StopApplication(string app)
-        {
-            //TODO:
-            //stop app: if Linux OS -> systemctl stop {app}
-        }
+			ProcessStartInfo info = new();
+			info.WindowStyle = ProcessWindowStyle.Hidden;
+			info.FileName = "/bin/bash";
+			info.RedirectStandardOutput = true;
+			info.UseShellExecute = false;
+			info.Arguments = args;
+			using var proc = new Process() { StartInfo = info };
+			proc.Start();
+
+			proc.WaitForExit();
+		}
     }
 }
