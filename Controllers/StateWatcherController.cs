@@ -28,19 +28,6 @@ namespace Server_Administration_Tool.Controllers
                 proc.WaitForExit();
             } else if (OperatingSystem.IsWindows())
             {
-                //string app = string.Empty;
-
-                //Process[] proc = Process.GetProcessesByName(app);
-
-                //output = proc.Length > 0 ? "OK" : "Stopped";
-
-                // // using (StreamReader reader = new(System.IO.File.OpenRead(@"C:\Users\as.kutashov\file.txt")))
-                // // {
-                // //     string a = reader.ReadToEnd();
-
-                // //     output = JsonSerializer.Serialize(a);
-                // // }
-
                 string a = string.Empty;
 
                 Random random = new();
