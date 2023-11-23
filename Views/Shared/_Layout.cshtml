@@ -13,33 +13,6 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <input type="checkbox" id="side-checkbox" />
-                <div class="side-panel">
-                    <label class="side-button-2" for="side-checkbox">+</label>    
-                    <div class="side-title" style="text-align: center;">GTVi-APP011</div>
-                    <div class="list">
-                        <a class="side-bar-elem" asp-area="" asp-controller="AddApp" asp-action="AddApplication">
-                            <img src="/src/add-button.png" alt="Add" style="width: 20%">
-                            <span>Добавить приложение</span>
-                        </a>
-                        <a class="side-bar-elem" asp-area="" asp-controller="ApplicationsList" asp-action="ApplicationsList">
-                            <img src="/src/document-text.png" alt="List" style="width: 20%">
-                            <span>Список приложений</span>
-                        </a>
-                        <a class="side-bar-elem" asp-area="" asp-controller="ServerConfig" asp-action="ServerConfiguration">
-                            <img src="/src/settings.png" alt="Settings" style="width: 15%">
-                            <span>Информация о сервере</span>
-                        </a>
-                        <a class="side-bar-elem bottom-elem" asp-area="" asp-controller="Home" asp-action="Help">
-                            <img src="/src/info-square.png" alt="Help" style="width: 15%;">
-                            <span>Помощь</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="side-button-1-wr" >
-                    <label class="side-button-1" for="side-checkbox">
-                        <img class="side-b side-open" src="/src/hamburger-menu-light.png" style="width: 20%; background: none; margin-left: 5%"></img>
-                    </label>
-                </div>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Server Administration Tool</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
