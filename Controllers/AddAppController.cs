@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Server_Administration_Tool.Controllers
 {
+    [Authorize]
     public class AddAppController : Controller
     {
         public IActionResult Index()

@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Server_Administration_Tool.Controllers
 {
+    [Authorize]
     public class StateWatcherController : Controller
     {
         public string CheckState()

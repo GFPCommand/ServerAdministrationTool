@@ -1,8 +1,9 @@
-namespace Server_Administration_Tool.Models;
-
-public class ErrorViewModel
+namespace ServerAdministrationTool.Models
 {
-    public string? RequestId { get; set; }
+    public class ErrorViewModel
+    {
+        public string? RequestId { get; set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }

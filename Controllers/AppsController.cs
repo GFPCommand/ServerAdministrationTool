@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Server_Administration_Tool.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ServerAdministrationTool.Models;
 using System.Diagnostics;
 
 namespace Server_Administration_Tool.Controllers
 {
+	[Authorize]
     public class AppsController : Controller
     {
 		public void StartApplication(string app)

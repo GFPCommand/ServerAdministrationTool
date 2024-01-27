@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Server_Administration_Tool.Models
+namespace ServerAdministrationTool.Models
 {
     public class Authority
     {
@@ -23,6 +23,8 @@ namespace Server_Administration_Tool.Models
             return Convert.ToHexString(bytes).ToLower();
         }
 
-        public bool LoginDataIsCorrect(string? login, string? password) => _loader.ReadUserPassword(login!, DataHash(DataHash(password!)));
+        public bool LoginDataIsCorrect(string login, string password) => _loader.ReadUserPassword(login, DataHash(DataHash(password!)));
     }
 }
+
+//admin : p9gNS19prS + sha256 + sha256

@@ -1,6 +1,5 @@
-@model User
-@{
-    ViewData["Title"] = "Авторизация";
+﻿@{
+    ViewData["Title"] = "Authorization";
 }
 
 <style>
@@ -16,7 +15,7 @@
 
 <div class="auth-block">
     <h2>Авторизация</h2>
-    <form method="post" asp-controller="Authority" asp-action="AuthPage">
+    <form method="post">
         <div class="form-group">
             <label>Введите логин:</label>
             <input type="text" name="login" required><br>
@@ -25,10 +24,6 @@
             <label>Введите пароль:</label>
             <input type="password" name="pswd" required><br>
         </div>
-        @if (!Model.isCorrect)
-        {
-            <p style="color: red;">Неверный логин и/или пароль</p>
-        }
         <div class="form-group">
             <input type="submit" value="Войти" class="btn" style="background-color: rgb(130, 169, 240);">
         </div>

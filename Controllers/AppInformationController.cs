@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Server_Administration_Tool.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ServerAdministrationTool.Models;
 
 namespace Server_Administration_Tool.Controllers
 {
+    [Authorize]
     public class AppInformationController : Controller
     {
         [HttpGet]

@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Server_Administration_Tool.Models;
+using ServerAdministrationTool.Models;
 
 namespace Helpers {
     public static class Users {
