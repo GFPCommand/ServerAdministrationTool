@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Добавление приложения";
+}
+
+<center><h2>Выберите формат добавления приложения на сервер</h2></center>
+
+<div class="actions" style="margin: 5%;">
+    <div class="container">
+        <a class="new-app" asp-controller="AddApp" asp-action="AddNewApplication">
+        <img src="/src/upload.png" alt="New App">
+        <p>Добавить новое приложение на сервер</p>
+    </a>
+    <a class="exs-app" asp-controller="AddApp" asp-action="AddExistingApplication">
+        <img src="/src/code.png" alt="Existing App">
+        <p>Добавить существующее приложение на сервере в список</p>
+    </a>
+    </div>
+</div>

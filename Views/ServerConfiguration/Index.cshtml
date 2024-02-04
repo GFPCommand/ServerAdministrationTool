@@ -1,0 +1,45 @@
+﻿@using System.Net;
+@using Helpers
+@{
+	ViewData["Title"] = "Информация о сервере";
+
+	var os = Environment.OSVersion;
+	var serverName = Environment.MachineName;
+	IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+	var hostName = Dns.GetHostName();
+}
+
+<div>
+	<center><h2>Общие сведения о сервере приложений</h2></center>
+	<p>Сервер работает под управлением: @os</p>
+	<p>Имя сервера: @serverName</p>
+	<p>Имя хоста сервера: @hostName</p>
+	<p>Адрес сервера: @localIPs[0] / @localIPs[1]</p>
+	<p>
+		<div id="applications-list" class="server-info">
+			<img class="open-button" src="/src/close-circle.png" style="transform: rotate(45deg)"/>
+			<span>Развернутые приложения на сервере:</span>
+		</div>
+		<ul id="apps" style="overflow: hidden; max-height: 0;">
+			@Applications.GetApplications()
+		</ul>
+	</p>
+
+	<p>
+		<div id="users-list" class="server-info">
+			<img class="open-button" src="/src/close-circle.png" style="transform: rotate(45deg)"/>
+			<span>Пользователи на сервере:</span>
+		</div>
+		
+		<ul id="users" style="overflow: hidden; max-height: 0;">
+			@Users.GetUsers()
+		</ul>
+	</p>
+</div>
+
+<script>
+	$(".server-info").click(function() {
+  $(".open-button").toggleClass("rot");
+});
+</script>
+<script src="~/js/list-anim.js"></script>

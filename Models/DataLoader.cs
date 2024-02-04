@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ServerAdministrationTool.Models
 {
@@ -10,49 +11,36 @@ namespace ServerAdministrationTool.Models
         readonly string jsonLoadUsers = string.Empty;
         readonly string jsonLoadApps = string.Empty;
 
-        private readonly JsonDocument docUsers;
-        private readonly JsonDocument docApps;
+        private string _userName = string.Empty;
 
         public DataLoader()
         {
             jsonLoadUsers = File.ReadAllText(USERS_FILE);
             jsonLoadApps = File.ReadAllText(APPS_FILE);
-
-            docUsers = JsonDocument.Parse(jsonLoadUsers);
-            docApps = JsonDocument.Parse(jsonLoadApps);
         }
 
         public bool ReadUserPassword(string login, string password)
         {
-            try
-            {
-                JsonElement elem = docUsers.RootElement;
+            _userName = login;
 
-                foreach (var item in ReadAllUsers(elem))
-                {
-                    if (item.GetProperty(login!).GetProperty("pswd").ToString().Equals(password))
-                        return true;
-                }
-            }
-            catch
+            foreach (var item in UsersList())
             {
-                return false;
+                if (item.Name.Equals(login) && item.Password.Equals(password))
+                {
+                    return true;
+                }
             }
 
             return false;
         }
 
-        private JsonElement.ArrayEnumerator ReadAllUsers(JsonElement rootElement) => rootElement.GetProperty("users").EnumerateArray();
-
-        private JsonElement.ArrayEnumerator ReadAllApps(JsonElement rootElement) => rootElement.GetProperty("apps").EnumerateArray();
-
         public List<string> Users()
         {
-            List<string> users = new();
+            List<string> users = [];
 
-            foreach (var item in ReadAllUsers(docUsers.RootElement))
+            foreach (var item in UsersList())
             {
-                users.Add(item.GetRawText().Trimmer());
+                users.Add(item.Name);
             }
 
             return users;
@@ -62,51 +50,76 @@ namespace ServerAdministrationTool.Models
         {
             List<string> apps = [];
 
-            foreach (var item in ReadAllApps(docApps.RootElement))
+            foreach (var item in ApplicationsList())
             {
-                apps.Add(item.GetRawText().Trimmer());
+                apps.Add(item.Name);
             }
 
             return apps;
+        }
+
+        public string UserInfo()
+        {
+            string info = string.Empty;
+
+            foreach (var item in UsersList())
+            {
+                if (item.Name.Equals(_userName))
+                    info = JsonConvert.SerializeObject(item);
+            }
+
+            return info;
         }
 
         public string AppInfo(string objName)
         {
             string info = string.Empty;
 
-            foreach (var item in ReadAllApps(docApps.RootElement))
+            foreach (var item in ApplicationsList())
             {
-                if (item.GetRawText().Trimmer().Equals(objName))
+                if (item.Name.Equals(objName))
                 {
-                    info = item.GetRawText();
-
-                    info = info.Remove(0, 1);
-
-                    int index = info.IndexOf('{');
-
-                    info = info.Remove(0, index - 1);
-
-                    info = info.Remove(info.Length - 1);
+                    info = JsonConvert.SerializeObject(item);
                 }
             }
 
             return info;
         }
-    }
 
-    public static class StringExtension
-    {
-        public static string Trimmer(this string str)
+        private List<User> UsersList()
         {
-            int index = str.IndexOf(":");
+            List<User> users = [];
 
-            str = str.Remove(index);
-            str = str.Remove(str.Length - 1);
-            str = str.Remove(0, 1);
-            str = str.Replace("\"", "");
-            str = str.Trim();
+            var json = JsonConvert.DeserializeObject<JObject>(jsonLoadUsers);
 
-            return str;
+            var elems = json["users"].ToList();
+
+            foreach (var item in elems)
+            {
+                var user = JsonConvert.DeserializeObject<User>(item.ToString());
+
+                users.Add(user);
+            }
+
+            return users;
+        }
+
+        private List<Application> ApplicationsList()
+        {
+            List<Application> apps = [];
+
+            var json = JsonConvert.DeserializeObject<JObject>(jsonLoadApps);
+
+            var elems = json["apps"].ToList();
+
+            foreach (var item in elems)
+            {
+                var app = JsonConvert.DeserializeObject<Application>(item.ToString());
+
+                apps.Add(app);
+            }
+
+            return apps;
         }
     }
 }

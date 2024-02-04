@@ -27,4 +27,5 @@ namespace ServerAdministrationTool.Models
     }
 }
 
-//admin : p9gNS19prS + sha256 + sha256
+// admin : p9gNS19prS + sha256 + sha256
+// user  : 2VqYvIdBQq + sha256 + sha256

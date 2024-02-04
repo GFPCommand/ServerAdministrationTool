@@ -40,7 +40,7 @@ app.MapControllerRoute(
 app.MapGet("/logout", async (HttpContext context) =>
 {
     await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    return Results.Redirect("/Auth/AuthPage");
+    return Results.Redirect("/Auth");
 });
 
 app.MapGet("/", (HttpContext context) =>
@@ -48,15 +48,15 @@ app.MapGet("/", (HttpContext context) =>
     var user = context.User.Identity;
     if (user is not null && user.IsAuthenticated)
     {
-        return Results.Redirect("/Home/Index");
+        return Results.Redirect("/Home");
     }
     else
     {
-        return Results.Redirect("/Auth/AuthPage");
+        return Results.Redirect("/Auth");
     }
 });
 
-app.MapPost("/Auth/AuthPage", async (HttpContext context) =>
+app.MapPost("/Auth", async (HttpContext context) =>
 {
     var form = context.Request.Form;
 
@@ -67,15 +67,14 @@ app.MapPost("/Auth/AuthPage", async (HttpContext context) =>
 
     if (!auth.LoginDataIsCorrect(login!, password!))
     {
-        return Results.Redirect("/Auth/AuthPage");
+        return Results.Redirect("/Auth");
     }
 
-    var claimsIdentity = new ClaimsIdentity("Cookies");
+    var claims = new List<Claim> { new(ClaimTypes.Name, login!) };
+    var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
     await context.SignInAsync(claimsPrincipal);
-    return Results.Redirect("/Home/Index");
+    return Results.Redirect("/Home");
 });
 
 app.Run();
-
-record class User(string login, string password);

@@ -22,6 +22,10 @@ body {
   margin-bottom: 60px;
 }
 
+a {
+
+}
+
 /* Оформление панели */
 #side-checkbox {
   display: none;
@@ -83,7 +87,7 @@ body {
 #side-checkbox:checked + .side-panel {
   left: 0;
 }
-/* Оформление кнопки на панеле */
+/* Оформление кнопки на панели */
 .side-button-2 {
   font-size: 30px;
   border-radius: 20px;
@@ -260,6 +264,31 @@ opacity: 0;
   width: 100%;
   max-width: fit-content;
   max-height: fit-content;
+}
+
+#pop {
+    text-align: center;
+    display: none;
+    position: absolute;
+    background: aliceblue;
+    border: solid 1px;
+    border-radius: 10px;
+    left: 85%;
+    top: 3rem;
+    width: 15em;
+    height: 8em;
+    z-index: 10;
+}
+
+#pop a {
+    display: block;
+    padding: 0.5em 0;
+    text-decoration: none;
+    color: black;
+}
+
+#pop a:hover {
+    background-color: aquamarine;
 }
 
 @keyframes spin {

@@ -1,4 +1,4 @@
-﻿namespace Server_Administration_Tool.Models
+﻿namespace ServerAdministrationTool.Models
 {
     public class Application
 	{

@@ -5,8 +5,8 @@ namespace ServerAdministrationTool.Controllers
 {
     [AllowAnonymous]
     public class AuthController : Controller
-    {    
-        public IActionResult AuthPage()
+    {
+        public IActionResult Index()
         {
             return View();
         }

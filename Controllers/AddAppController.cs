@@ -11,11 +11,6 @@ namespace Server_Administration_Tool.Controllers
             return View();
         }
 
-        public IActionResult AddApplication() 
-        {
-            return View();
-        }
-
         public IActionResult AddNewApplication()
         {
             return View();

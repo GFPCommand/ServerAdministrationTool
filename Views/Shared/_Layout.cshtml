@@ -14,10 +14,19 @@
             <div class="container-fluid">
                 <input type="checkbox" id="side-checkbox" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Server Administration Tool</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <a id="user" style="margin-right: 1em; cursor: pointer">@Context.User.Identity.Name</a>
+                    <div id="pop">
+                        <span style="display: block; padding: 0.5em">Добро пожаловать, @Context.User.Identity.Name</span>
+                        <a>Профиль</a>
+                        <a href="/logout">Выход</a>
+                    </div>
+                }
+                @* @if (Context.User.Identity.IsAuthenticated) {
+                    <span>Добро пожаловать, @Context.User.Identity.Name</span>
+                    <a href="/logout">Выйти</a>
+                }   *@              
             </div>
         </nav>
     </header>

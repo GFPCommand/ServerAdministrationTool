@@ -1,0 +1,82 @@
+﻿@using Helpers
+@{
+	ViewData["Title"] = "Список приложений";
+}
+
+<div>
+	<center><h2>Список развернутых приложений на сервере</h2></center>
+	<div class="elements">
+		@Applications.GetApplicationsList()
+	</div>
+	<script src="/js/state-watcher.js"></script>
+    <script src="/js/info-loader.js" defer async></script>
+	<script src="/lib/jquery/dist/jquery.min.js"></script>
+	<script>
+		$('.elements div:eq(0)').animate({opacity: 1}, 100, function(){
+			$(this).next().animate({opacity: 1}, 100, arguments.callee);
+		});
+	</script>
+</div>
+
+<div class="modal fade" id="info-modal" tabindex="-1" aria-labelledby="info-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="info-label">Информация о приложении</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <p>Название: <span id="name"></span></p>
+        <p>Путь: <span id="path"></span></p>
+        <p>Размер: <span id="size"></span> Кб</p>
+        <p>Версия: <span id="version"></span></p>
+        <p>Дата загрузки: <span id="upload-date"></span></p>
+        <p>Дата обновления: <span id="last-update"></span></p>
+        <p>Описание: <span id="description"></span></p>
+        <p>Ссылка: <a id="link"></a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="update-modal" tabindex="-1" aria-labelledby="update-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="update-label">Обновление приложения</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+		<button type="button" class="btn btn-primary">Сохранить изменения</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="restart-modal" tabindex="-1" aria-labelledby="restart-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="restart-label">Перезапуск приложения</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+		<p>Выполнить простой перезапуск приложения (restart)</p>
+    <button type="button" class="btn btn-secondary">Перезапуск</button>
+    <p></p>  
+		<p>Выполнить перезапуск приложения с перечитыванием конфигурационного файла (reload)</p>
+		<button type="button" class="btn btn-secondary">Перезагрузка</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
