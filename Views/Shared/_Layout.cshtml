@@ -16,26 +16,43 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Server Administration Tool</a>
                 @if (Context.User.Identity.IsAuthenticated)
                 {
-                    <a id="user" style="margin-right: 1em; cursor: pointer">@Context.User.Identity.Name</a>
+                    <a id="user" style="cursor: pointer;">@Context.User.Identity.Name<img src="/src/profile.png" height="50"/></a>
                     <div id="pop">
                         <span style="display: block; padding: 0.5em">Добро пожаловать, @Context.User.Identity.Name</span>
-                        <a>Профиль</a>
+                        <a data-bs-toggle="modal" data-bs-target="#user-info-modal">Профиль</a>
                         <a href="/logout">Выход</a>
                     </div>
-                }
-                @* @if (Context.User.Identity.IsAuthenticated) {
-                    <span>Добро пожаловать, @Context.User.Identity.Name</span>
-                    <a href="/logout">Выйти</a>
-                }   *@              
+                }           
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+
+            <div class="modal fade" id="user-info-modal" tabindex="-1" aria-labelledby="info-label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="info-label">Информация о пользователе</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Имя пользователя: @Context.User.Identity.Name</p>
+                            <p>Роль пользователя: </p>
+                            <p><span>Старый пароль: </span> <input type="password" name="old-pass" /></p>
+                            <p><span>Новый пароль: </span> <input type="password" name="new-pass"/></p>
+                            <p><span>Повторите новый пароль: </span> <input type="password" name="repeat-new-pass"/></p>
+                            <button class="btn btn-primary" type="submit" disabled>Сохранить изменения</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

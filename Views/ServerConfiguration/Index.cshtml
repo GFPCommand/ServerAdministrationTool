@@ -10,7 +10,7 @@
 }
 
 <div>
-	<center><h2>Общие сведения о сервере приложений</h2></center>
+	<center><h2>Общие сведения о сервере</h2></center>
 	<p>Сервер работает под управлением: @os</p>
 	<p>Имя сервера: @serverName</p>
 	<p>Имя хоста сервера: @hostName</p>
@@ -33,13 +33,41 @@
 		
 		<ul id="users" style="overflow: hidden; max-height: 0;">
 			@Users.GetUsers()
+			<li><a data-bs-toggle="modal" data-bs-target="#new-user-modal" style="cursor: pointer">Добавить пользователя...</a></li>
 		</ul>
 	</p>
 </div>
 
+<div class="modal fade" id="new-user-modal" tabindex="-1" aria-labelledby="info-label" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="info-label">Добавить нового пользователя</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+			</div>
+			<div class="modal-body">
+				<p>Имя пользователя: <input type="text" name="new-user-name" /></p>
+				<p>Роль пользователя: 
+					<select>
+						<option value="Admin">Admin</option>
+						<option value="Manager">Manager</option>
+						<option value="User">User</option>
+					</select>
+				</p>
+				<p><span>Новый пароль: </span> <input type="password" name="new-pass" /></p>
+				<p><span>Повторите пароль: </span> <input type="password" name="repeat-new-pass" /></p>
+				<button class="btn btn-primary" type="submit" disabled>Сохранить изменения</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
 	$(".server-info").click(function() {
-  $(".open-button").toggleClass("rot");
-});
+		$(".open-button").toggleClass("rot");
+	});
 </script>
 <script src="~/js/list-anim.js"></script>

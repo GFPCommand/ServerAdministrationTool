@@ -10,10 +10,5 @@ namespace Server_Administration_Tool.Controllers
         {
             return View();
         }
-
-        public IActionResult ApplicationsList()
-        {
-            return View();
-        }
     }
 }

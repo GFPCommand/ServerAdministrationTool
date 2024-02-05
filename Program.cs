@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using ServerAdministrationTool.Models;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Http.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 {
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.Cookie.MaxAge = options.ExpireTimeSpan;
+    options.LoginPath = "/Auth";
+    options.Events = new CookieAuthenticationEvents()
+    {
+        OnRedirectToLogin = redirectContext =>
+        {
+            var uri = redirectContext.RedirectUri;
+            UriHelper.FromAbsolute(uri, out var scheme, out var host, out var path, out var query, out var fragment);
+            uri = UriHelper.BuildAbsolute(scheme, host, path);
+            redirectContext.Response.Redirect(uri);
+            return Task.CompletedTask;
+        }
+    };
 });
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
@@ -54,27 +66,6 @@ app.MapGet("/", (HttpContext context) =>
     {
         return Results.Redirect("/Auth");
     }
-});
-
-app.MapPost("/Auth", async (HttpContext context) =>
-{
-    var form = context.Request.Form;
-
-    var login = form["login"];
-    var password = form["pswd"];
-
-    Authority auth = new();
-
-    if (!auth.LoginDataIsCorrect(login!, password!))
-    {
-        return Results.Redirect("/Auth");
-    }
-
-    var claims = new List<Claim> { new(ClaimTypes.Name, login!) };
-    var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-    await context.SignInAsync(claimsPrincipal);
-    return Results.Redirect("/Home");
 });
 
 app.Run();

@@ -7,7 +7,7 @@ namespace Server_Administration_Tool.Controllers
 	public class ServerConfigurationController : Controller
 	{
 		public IActionResult Index() 
-		{ 
+		{
 			return View();
 		}
 	}
