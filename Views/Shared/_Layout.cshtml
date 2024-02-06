@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    User user = new();
+
+    if (Context.User.Identity.IsAuthenticated)
+    {
+        DataLoader loader = new();
+
+        user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(loader.UserInfo(Context.User.Identity.Name));
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -38,8 +49,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Имя пользователя: @Context.User.Identity.Name</p>
-                            <p>Роль пользователя: </p>
+                            <p>Имя пользователя: @user.Name</p>
+                            <p>Роль пользователя: @user.Role</p>
                             <p><span>Старый пароль: </span> <input type="password" name="old-pass" /></p>
                             <p><span>Новый пароль: </span> <input type="password" name="new-pass"/></p>
                             <p><span>Повторите новый пароль: </span> <input type="password" name="repeat-new-pass"/></p>

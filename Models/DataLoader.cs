@@ -58,13 +58,13 @@ namespace ServerAdministrationTool.Models
             return apps;
         }
 
-        public string UserInfo()
+        public string UserInfo(string user)
         {
             string info = string.Empty;
 
             foreach (var item in UsersList())
             {
-                if (item.Name.Equals(_userName))
+                if (item.Name.Equals(user))
                     info = JsonConvert.SerializeObject(item);
             }
 

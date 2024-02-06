@@ -33,7 +33,9 @@
 		
 		<ul id="users" style="overflow: hidden; max-height: 0;">
 			@Users.GetUsers()
-			<li><a data-bs-toggle="modal" data-bs-target="#new-user-modal" style="cursor: pointer">Добавить пользователя...</a></li>
+			@if (!Context.User.IsInRole("User")) {
+				<li><a data-bs-toggle="modal" data-bs-target="#new-user-modal" style="cursor: pointer">Добавить пользователя...</a></li>
+			}
 		</ul>
 	</p>
 </div>
@@ -49,7 +51,10 @@
 				<p>Имя пользователя: <input type="text" name="new-user-name" /></p>
 				<p>Роль пользователя: 
 					<select>
-						<option value="Admin">Admin</option>
+						@if (Context.User.IsInRole("Admin"))
+						{
+							<option value="Admin">Admin</option>
+						}
 						<option value="Manager">Manager</option>
 						<option value="User">User</option>
 					</select>
