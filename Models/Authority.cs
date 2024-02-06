@@ -12,7 +12,7 @@ namespace ServerAdministrationTool.Models
             _loader = new DataLoader();
         }
 
-        private string DataHash(string password)
+        public string DataHash(string password)
         {
             byte[] bytes;
 

@@ -3,14 +3,8 @@ using Newtonsoft.Json.Linq;
 
 namespace ServerAdministrationTool.Models
 {
-    public class DataLoader
+    public class DataLoader : DataManager
     {
-        private const string USERS_FILE = "users.json";
-        private const string APPS_FILE = "apps.json";
-
-        readonly string jsonLoadUsers = string.Empty;
-        readonly string jsonLoadApps = string.Empty;
-
         private string _userName = string.Empty;
 
         public DataLoader()
@@ -86,7 +80,7 @@ namespace ServerAdministrationTool.Models
             return info;
         }
 
-        private List<User> UsersList()
+        protected override List<User> UsersList()
         {
             List<User> users = [];
 
@@ -104,7 +98,7 @@ namespace ServerAdministrationTool.Models
             return users;
         }
 
-        private List<Application> ApplicationsList()
+        protected override List<Application> ApplicationsList()
         {
             List<Application> apps = [];
 
