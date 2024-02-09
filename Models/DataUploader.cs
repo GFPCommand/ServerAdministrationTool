@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ServerAdministrationTool.Models
 {
@@ -23,46 +22,59 @@ namespace ServerAdministrationTool.Models
 			jsonLoadApps = File.ReadAllText(APPS_FILE);
 		}
 
-        public void WriteNewUser(string login, string password, string role)
+        public bool WriteData(out string err, UserActions action, string login, string password = "", string role = "")
         {
-            var pswdHash = _auth.DataHash(_auth.DataHash(password));
-
-			User user = new() { Name = login, Password = pswdHash, Role = role};
-
-			_usersList = UsersList();
-
-			_usersList.Add(user);
-
-			Dictionary<string, List<User>> vals = new Dictionary<string, List<User>>
+			err = string.Empty;
+			try
 			{
-				{ "users", _usersList }
-			};
+				var pswdHash = _auth.DataHash(_auth.DataHash(password));
 
-			File.WriteAllText(USERS_FILE, JsonConvert.SerializeObject(vals, settings));
-        }
+				User user = new() { Name = login, Password = pswdHash, Role = role };
 
-		protected override List<Application> ApplicationsList()
-		{
-			throw new NotImplementedException();
-		}
+				_usersList = UsersList();
 
-		// выкинуть в базовый класс как и в loader'е
-		protected override List<User> UsersList()
-        {
-			List<User> users = [];
+				switch (action)
+				{
+					case UserActions.CREATE:
+                        _usersList.Add(user);
+                        break;
+					case UserActions.UPDATE:
+                        foreach (var item in _usersList)
+                        {
+                            if (item.Name.Equals(login))
+                            {
+                                item.Password = pswdHash;
+                            }
+                        }
+                        break;
+					case UserActions.DELETE:
+						int index = 0;
+						foreach (var item in _usersList.ToList())
+						{
+							if (item.Name.Equals(login))
+							{
+								_usersList.RemoveAt(index);
+                            }
 
-			var json = JsonConvert.DeserializeObject<JObject>(jsonLoadUsers);
+							index++;
+						}
+						break;
+				}
 
-			var elems = json["users"].ToList();
+                Dictionary<string, List<User>> vals = new()
+                {
+					{ "users", _usersList }
+				};
 
-			foreach ( var item in elems )
+				File.WriteAllText(USERS_FILE, JsonConvert.SerializeObject(vals, settings));
+			} catch (Exception ex)
 			{
-				var user = JsonConvert.DeserializeObject<User>(item.ToString());
+				err = ex.Message;
 
-				users.Add(user);
+				return false;
 			}
 
-			return users;
+			return true;
         }
     }
 }

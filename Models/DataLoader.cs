@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ServerAdministrationTool.Models
 {
@@ -78,42 +77,6 @@ namespace ServerAdministrationTool.Models
             }
 
             return info;
-        }
-
-        protected override List<User> UsersList()
-        {
-            List<User> users = [];
-
-            var json = JsonConvert.DeserializeObject<JObject>(jsonLoadUsers);
-
-            var elems = json["users"].ToList();
-
-            foreach (var item in elems)
-            {
-                var user = JsonConvert.DeserializeObject<User>(item.ToString());
-
-                users.Add(user);
-            }
-
-            return users;
-        }
-
-        protected override List<Application> ApplicationsList()
-        {
-            List<Application> apps = [];
-
-            var json = JsonConvert.DeserializeObject<JObject>(jsonLoadApps);
-
-            var elems = json["apps"].ToList();
-
-            foreach (var item in elems)
-            {
-                var app = JsonConvert.DeserializeObject<Application>(item.ToString());
-
-                apps.Add(app);
-            }
-
-            return apps;
         }
     }
 }

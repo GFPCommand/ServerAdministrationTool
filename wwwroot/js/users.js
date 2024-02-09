@@ -1,4 +1,28 @@
 $(document).ready(function () {
+    $('.user-info-block input').on('keyup', function () {
+        let new_pass_exist = $('#new-pass-exist').val().length;
+        let repeat_new_pass_exist = $('#repeat-new-pass-exist').val().length;
+
+        let new_pass_exist_val = $('#new-pass-exist').val();
+        let repeat_new_pass_exist_val = $('#repeat-new-pass-exist').val();
+
+        let is_error_pass = false;
+
+        if (new_pass_exist_val !== repeat_new_pass_exist_val) {
+            $('.wrong-pass-info').css('display', 'block');
+            is_error_pass = true;
+        }
+        else {
+            $('.wrong-pass-info').css('display', 'none');
+            is_error_pass = false;
+        }
+
+        if (new_pass_exist >= 10 && repeat_new_pass_exist >= 10 && !is_error_pass)
+            $('.approve-info').attr('disabled', false);
+        else
+            $('.approve-info').attr('disabled', true);
+    });
+
     $('.modal-body input').on('keyup', function () {
         let new_user = $('#new-user-name').val().length;
         let new_pass = $('#new-pass').val().length;
@@ -10,25 +34,33 @@ $(document).ready(function () {
         let is_error_pass = false;
 
         if (new_pass_val !== repeat_new_pass_val) {
-            $('#wrong-pass').css('display', 'block');
+            $('.wrong-pass').css('display', 'block');
             is_error_pass = true;
         }
         else {
-            $('#wrong-pass').css('display', 'none');
+            $('.wrong-pass').css('display', 'none');
             is_error_pass = false;
         }
 
         if (new_user > 0 && new_pass >= 10 && repeat_new_pass >= 10 && !is_error_pass)
-            $('#approve').attr('disabled', false);
-        else $('#approve').attr('disabled', true);
+            $('.approve').attr('disabled', false);
+        else $('.approve').attr('disabled', true);
+    });
+
+    $('#user-info-modal').on('hidden.bs.modal', function () {
+        $('#old-pass-exist').val('');
+        $('#new-pass-exist').val('');
+        $('#repeat-new-pass-exist').val('');
+        $('.wrong-pass-info').css('display', 'none');
+        $('.approve-info').attr('disabled', true);
     });
 
     $('#new-user-modal').on('hidden.bs.modal', function () {
         $('#new-user-name').val('');
         $('#new-pass').val('');
         $('#repeat-new-pass').val('');
-        $('#wrong-pass').css('display', 'none');
-        $('#approve').attr('disabled', true);
+        $('.wrong-pass').css('display', 'none');
+        $('.approve').attr('disabled', true);
     });
 });
 
@@ -53,47 +85,52 @@ function createUser() {
     });
 }
 
-function readUser() {
+function readUser(username) {
     $.ajax({
         type: "GET",
-        url: "",
-        data: {},
+        url: "/Users/ReadUser",
+        data: { name: username },
         success: function (data) {
-            alert("Пользователь найден");
+            const obj = JSON.parse(data);
+
+            console.log(obj.Name);
+            console.log(obj.Role);
         },
         error: function (data) {
-            alert("Во время обработки запроса произошла ошибка. Попробуйте повторить позже.");
-            console.log(data);
+            alert("An error occured while processing the request. Please, try again later.");
         }
     });
 }
 
-function updateUser() {
+function updateUser(username, user_role) {
+    let old_pass_val = $('#old-pass-exist').val();
+    let new_pass_val = $('#new-pass-exist').val();
     $.ajax({
-        type: "UPDATE",
-        url: "",
-        data: {},
+        type: "PUT",
+        url: "/Users/UpdateUser",
+        data: {
+            name: username,
+            old_pass: old_pass_val,
+            new_pass: new_pass_val,
+            role: user_role
+        },
         success: function (data) {
-            alert("Изменения были успешно внесены");
         },
         error: function (data) {
-            alert("Во время обработки запроса произошла ошибка. Попробуйте повторить позже.");
-            console.log(data);
+            alert("An error occured while processing the request. Please, try again later.");
         }
     });
 }
 
-function deleteUser() {
+function deleteUser(username) {
     $.ajax({
         type: "DELETE",
-        url: "",
-        data: {},
+        url: "/Users/DeleteUser",
+        data: { name: username },
         success: function (data) {
-            alert("Пользователь удален");
         },
         error: function (data) {
-            alert("Во время обработки запроса произошла ошибка. Попробуйте повторить позже.");
-            console.log(data);
+            alert("An error occured while processing the request. Please, try again later.");
         }
     });
 }

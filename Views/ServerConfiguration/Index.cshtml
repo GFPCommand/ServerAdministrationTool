@@ -63,8 +63,8 @@
 					</p>
 					<p><span>Новый пароль: </span> <input id="new-pass" type="password" name="new-pass" /></p>
 					<p><span>Повторите пароль: </span> <input id="repeat-new-pass" type="password" name="repeat-new-pass" /></p>
-					<p id="wrong-pass" style="display: none; color: red;">Пароли не совпадают!</p>
-					<button id="approve" class="btn btn-primary" type="submit" onclick="createUser()" disabled>Сохранить изменения</button>
+					<p class="wrong-pass" style="display: none; color: red;">Пароли не совпадают!</p>
+					<button class="btn btn-primary approve" type="submit" onclick="createUser()" disabled>Сохранить изменения</button>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -80,4 +80,3 @@
 	});
 </script>
 <script src="~/js/list-anim.js"></script>
-<script src="~/js/users.js"></script>

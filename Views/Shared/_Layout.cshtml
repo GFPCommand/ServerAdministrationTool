@@ -1,11 +1,11 @@
 ﻿@{
     User user = new();
 
-    if (Context.User.Identity.IsAuthenticated)
+    if (Context.User.Identity!.IsAuthenticated)
     {
         DataLoader loader = new();
 
-        user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(loader.UserInfo(Context.User.Identity.Name));
+        user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(loader.UserInfo(Context.User.Identity!.Name));
     }
 }
 
@@ -50,13 +50,18 @@
                             <h5 class="modal-title" id="info-label">Информация о пользователе</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                         </div>
-                        <div class="modal-body">
-                            <p>Имя пользователя: @user.Name</p>
-                            <p>Роль пользователя: @user.Role</p>
-                            <p><span>Старый пароль: </span> <input type="password" name="old-pass" /></p>
-                            <p><span>Новый пароль: </span> <input type="password" name="new-pass"/></p>
-                            <p><span>Повторите новый пароль: </span> <input type="password" name="repeat-new-pass"/></p>
-                            <button class="btn btn-primary" type="submit" disabled>Сохранить изменения</button>
+                        <div class="modal-body user-info-block">
+                            <p>Имя пользователя: @user!.Name</p>
+                            <p>Роль пользователя: @user!.Role</p>
+                            @if (!Context.User.IsInRole("User"))
+                            {
+                                <p><span>Старый пароль: </span> <input id="old-pass-exist" type="password" name="old-pass" /></p>
+                                <p><span>Новый пароль: </span> <input id="new-pass-exist" type="password" name="new-pass"/></p>
+                                <p><span>Повторите новый пароль: </span> <input id="repeat-new-pass-exist" type="password" name="repeat-new-pass"/></p>
+                                <p class="wrong-pass-info" style="display: none; color: red;">Пароли не совпадают!</p>
+                                <button class="btn btn-primary approve-info" type="submit" onclick="updateUser('@user.Name', '@user.Role')" disabled>Сохранить изменения</button>
+@*                                 <button class="btn btn-primary approve-info" type="submit" onclick="deleteUser('@user.Name')" disabled>Сохранить изменения</button>*@
+                            }
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -67,6 +72,7 @@
         </main>
     </div>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/users.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
